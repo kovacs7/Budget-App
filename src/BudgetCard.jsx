@@ -1,7 +1,15 @@
 import { Card, ProgressBar, Stack } from "react-bootstrap"
 import Button from 'react-bootstrap/Button';
 
-const BudgetCard = ({name, amount, max}) => {
+const BudgetCard = ({name, amount, max, gray}) => {
+
+  // very usefull method for adding custom classNames
+  let className = []
+  if (amount > max){
+    className.push("bg-danger", "bg-opacity-10")
+  } else if (gray){
+    className.push("bg-light")
+  }
 
   const getProgressBarVariant = (amount,max) => {
     const ratio = amount/max
@@ -11,7 +19,7 @@ const BudgetCard = ({name, amount, max}) => {
   }
 
   return (
-    <Card>
+    <Card className={className.join(" ")}>
         <Card.Body>
             <Card.Title className="d-flex justify-content-between align-items-baseline fw-normal mb-3">
                 <div className="me-2">YourExpense</div>
